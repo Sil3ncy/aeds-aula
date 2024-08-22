@@ -1,47 +1,59 @@
 public class Cesar {
     
     
-    public static String cifrada (String palavra){
+    public static void cifrada (String palavra){
+
 
         int cifra = 3;
         StringBuilder word = new StringBuilder();
-        
-        if(palavra.equals("FIM")){
-            System.exit(0);
-        }
 
-        else{
+
+        
+            
             for(int i =0;i<palavra.length();i++){
                 char ch = palavra.charAt(i);
-                char newch = (char) (ch + cifra);
-                word.append(newch);
+                if (ch >= 32 & ch <= 126) {
+                    char base = 32;
+                    ch = (char) ((ch - base + cifra) %95 + base);
+                }
+
+                word.append(ch);
                 
             }
 
             word.toString();
             System.out.println(word);
+            //return word;
             
-        }
+        
 
     }
-    
-    
-    
     
     
     
     
     public static void main(String[] args) {
-        MyIO.setCharset("US-ASCII");
+    MyIO.setCharset("UTF-8");
 
         String palavra = MyIO.readLine();
+        cifrada(palavra);
         boolean x = true;
-    
-        StringBuilder word = new StringBuilder();
 
         while (x){
+            palavra = MyIO.readLine();
 
+            if (palavra.equals("FIM")){
+                x = false;
+            }
 
-    }
-  }
+            else{
+                cifrada(palavra);
+            }
+        }
+
+        
+    
+
+}
+
 }
